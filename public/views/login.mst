@@ -1,0 +1,45 @@
+<form method="post" class="inner 6u$ 12u$(xsmall) ajax login" action="/user/login" success="succ_log">
+	<header class="major">
+		<h1>Login</h1>
+	</header>
+	<div class="row uniform">
+		<div class="6u$ 12u$(xsmall)">
+			<input type="email" name="email" value="" placeholder="Email">
+		</div>
+		<div class="6u$ 12u$(xsmall)">
+			<input type="text" name="password" value="" placeholder="Password">
+		</div>
+		<div class="3u 6u(small)">
+			<input type="checkbox" name="human" id="human" >
+			<label for="human">I am a human</label>
+		</div>
+		<div class="3u 6u(small)">
+			<input type="checkbox" name="remember" id="remember" >
+			<label for="remember">Remember me</label>
+		</div>
+
+		<!-- Break -->
+		<div class="12u$">
+			<ul class="actions">
+				<li>
+					<input type="submit" value="Login" class="special">
+				</li>
+			</ul>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+
+ var succ_log = function succ_log( data ){
+	 if($("#remember").prop('checked')){
+		 localStorage.setItem('token',data.token)
+		 localStorage.setItem('id',data.user.id)
+	 }
+	 console.log(data);
+	 page['profile'].with({user:data.user})
+	 $("#csrf").html(data.token)
+	 $('#signin-menu').css({'display': 'none'})
+	 $('#login-menu').css({'display': 'none'})
+	 $('#logout-menu').css({'display': 'block'})
+ }
+</script>

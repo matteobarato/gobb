@@ -1,0 +1,34 @@
+<div ng-controller="roomsController" class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<a href="#room/" rel="tooltip" title="Aggiungi stanza" class="btn btn-success btn-round pull-right"><i class="material-icons md-24">add_circle_outline</i> <i class="material-icons md-24">hotel</i></a>
+		</div>
+		<div ng-repeat="room in rooms" class="col-lg-3 col-md-4 col-sm-6 animated zoomIn">
+			<div class="card card-stats card-room">
+				<div class="card-header" data-background-color="green">
+					<h2>&nbsp;{{room.name}}&nbsp;</h2>
+				</div>
+
+				<div class="card-content">
+					<h6 class="category">{{room.getType()}}</h6>
+				</div>
+
+				<div class="card-footer">
+					<div class="stats">
+						<p><i class="material-icons">date_range</i> Occupata / Libera</p>
+					</div>
+				</div>
+				<hr>
+				<div class="col-sm-10 col-sm-offset-1">
+					<ul class="list-inline">
+						<li class="list-inline-item col-sm-3"><a href="" title="Prenotazione" rel="tooltip" class="text-success"> <i class="material-icons md-24">local_offer</i></a></li>
+						<li clvalue="list-inline-item col-sm-3"><a href="#room/{{room.id}}" title="modifica" rel="tooltip" class="text-success"><i class="material-icons md-24">edit</i>&nbsp;</a></li>
+					</ul>
+				</div>
+			</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+<div ng-controller="roomsController" class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+
+		</div>
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+			<a href="#rooms/" rel="tooltip" title="Indietro" class="btn btn-success"><i class="material-icons md-24">keyboard_backspace</i></a>
+
+			<div class="card animated slideInDown" >
+
+				<div class="card-header" data-background-color="green">
+					<h3 ng-if="!room.id" class="title">Aggiungi nuova camera</h3>
+					<h3 ng-if="room.id" class="title">Modifica camera: {{room.name}} </h3>
+					<p class="category">Inserisci informazioni</p>
+				</div>
+				<div class="card-content">
+					<form ng-submit="submit()">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="form-group label-floating">
+									<select id="type" ng-model="room.type" class="form-control" ng-options="t.id as t.name for t in typesOptions" required="">
+									</select>
+									<label for="type" class="control-label">Categoria</label>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-5">
+								<div class="form-group label-floating">
+									<label class="control-label">Nome</label>
+									<input type="text" class="form-control" ng-model="room.name">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group label-floating">
+									<label class="control-label"><i class="material-icons">business</i> Piano</label>
+									<input type="number" class="form-control" ng-model="room.floor" number>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-5">
+								<div class="form-group label-floating">
+									<label class="control-label"><i class="material-icons">hotel</i> Posti letto</label>
+									<input type="number" min="0" class="form-control" ng-model="room.max_persons" number>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="form-group label-floating">
+									<label class="control-label"><i class="material-icons">attach_money</i> Prezzo</label>
+									<input type="number" min="0" step="0.01" class="form-control" ng-model="room.price" number>
+								</div>
+							</div>
+
+							<div class="col-sm-12 form-group label-floating">
+								<textarea class="form-control" placeholder="Note" ng-model="room.note"></textarea>
+							</div>
+						</div>
+						<a href="#/rooms" class="btn btn-danger" ng-click="room.delete();"><i class="material-icons">delete_forever</i></a>
+						<button type="submit" class="btn btn-primary pull-right"><b>SALVA</b></button>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

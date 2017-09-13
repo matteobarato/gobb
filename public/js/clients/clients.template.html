@@ -1,0 +1,46 @@
+<div ng-controller="clientsController" class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header animated fadeInDown" data-background-color="orange">
+					<a href="#client/" rel="tooltip" title="Aggiungi nuovo cliente" class="btn btn-warning btn-round pull-right"><i class="material-icons md-24">add_circle_outline</i> <i class="material-icons md-24">perm_contact_calendar</i></a>
+					<h3 class="title">Registro Clienti</h3>
+					<h6 class="category">Qui vengono salvate tutte le infromazioni dei clienti che hanno soggiornato presso la tua struttura per essere riutilizzate in futuro</h6>
+				</div>
+				<div class="card-content table-responsive">
+					<div class="col-sm-12">
+						<div class="form-group label-floating col-xs-12 col-sm-6 col-md-3">
+							<label class="control-label">Cerca Nome</label>
+							<input type="text" class="form-control">
+						</div>
+						<div class="form-group label-floating col-xs-12 col-sm-6 col-md-3">
+							<label class="control-label">Cerca N° Documento</label>
+							<input type="text" class="form-control">
+						</div>
+					</div>
+					<table class="table">
+						<thead class="text-success">
+							<th style="max-width:80px; width:80px"></th>
+							<th><i class="material-icons">perm_identity</i> Nome Cognome</th>
+							<th><i class="material-icons">email</i> Email</th>
+							<th><i class="material-icons">phone</i> Tel.</th>
+							<th><i class="material-icons">chrome_reader_mode</i> N° Documento</th>
+							<th><i class="material-icons">info_outline</i> Info</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="c in clients">
+								<td>{{c.id}} </td>
+								<td><b>{{c.name}} {{c.surname}}</b></td>
+								<td><a href="mailto:{{c.email}}" class="text-muted">{{c.email}}</a></td>
+								<td><a href="tel:{{c.telephone}}" class="text-muted">{{c.telephone}}</a></td>
+								<td>{{c.id_number}}</td>
+								<td><a href="#client/{{c.id}}" class="btn btn-warning btn-round"><i class="material-icons md-18">arrow_forward</i> <i class="material-icons md-18">contact_mail</i></a></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

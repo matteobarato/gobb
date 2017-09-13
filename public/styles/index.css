@@ -1,0 +1,261 @@
+.control-label>.material-icons {
+    vertical-align: bottom;
+}
+
+.btn-white {
+    background-color: white;
+}
+
+.btn-white.text-success {
+    color: #4caf50;
+}
+
+.square-list {
+    border: solid #ECEFF1 1px;
+    transition: all .5s;
+    padding: 1em;
+    padding-bottom: 1em;
+}
+
+.square-list:hover {
+    box-shadow: 0 14px 14px 0 rgba(0, 0, 0, .25), 0 10px 5px 0 rgba(0, 0, 0, .22);
+}
+
+.square-list-info {
+    visibility: hidden;
+    ;
+}
+
+.square-list:hover>.square-list-info {
+    visibility: visible;
+}
+
+.btn-square-list {
+    margin-top: 2em;
+}
+
+.placeholder-white>input[placeholder] {
+    color: white !important;
+}
+
+.placeholder-white>.control-label {
+    color: white !important;
+}
+
+.card-room {
+    transition: all .5s;
+}
+
+.card-room:hover {
+    box-shadow: 0 14px 14px 0 rgba(0, 0, 0, .25), 0 10px 5px 0 rgba(0, 0, 0, .22);
+}
+
+.info-room {
+    margin: 1em;
+    visibility: hidden;
+}
+
+.card-room:hover>.info-room {
+    visibility: visible;
+}
+
+.btn-square-list {
+    margin-top: 2em;
+}
+
+.placeholder-white>input[placeholder] {
+    color: white !important;
+}
+
+.placeholder-white>.control-label {
+    color: white !important;
+}
+
+.table .form-group {
+    margin-top: 0px;
+}
+
+
+/* Rules for sizing the icon. */
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.material-icons.md-130 {
+    font-size: 130px;
+}
+
+
+/* Rules for using icons as black on a light background. */
+
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+
+/* Rules for using icons as white on a dark background. */
+
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.wizard-card .nav-pills> li.active> a, .nav-pills> li.active> a:focus, .nav-pills> li.active> a:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.container .wizard-container {
+    padding-top: 0;
+}
+
+#http-response-status-container {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 10000000000;
+}
+
+#http-response-loading, #http-response-success, #http-response-error {
+    display: none;
+}
+
+.bkg {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    margi: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* CALENDAR */
+
+.fc-button {
+    border: none;
+    background: #4caf50;
+    color: #FFFFFF;
+    position: relative;
+    padding: 12px 30px;
+    margin: 10px 1px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    will-change: box-shadow, transform;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+th.fc-widget-header {
+    background-color: #eee;
+    border-color: #eee;
+}
+
+
+.fc-time-area .fc-rows tr .fc-timeline-event {
+    transition: all .3s;
+    height: 90px;
+    margin: 10px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    z-index: 10000;
+}
+
+.fc td, .fc th{
+  border-style: none !important;
+}
+
+.fc-view-container{
+  background-color: rgba(238, 238, 238, 0.72) !important;
+}
+
+.fc-resource-area {
+    width: 10em;
+    max-width: 100px;
+}
+
+.fc-widget-content{
+  height: 120px !important;
+}
+
+.fc-event-container {
+    height: 100px !important;
+}
+.fc-content {
+    color: #222 !important;
+}
+.fc-people, .fc-info{
+  border-right: 2px solid #eeeeee;
+  height: 100%;
+}
+.fc-time, .fc-title {
+  float: left;
+}
+.fc-unthemed td.fc-today {
+    background: #4caf50;
+}
+th.fc-widget-header.fc-tue.fc-today{
+  color: #4caf50;
+}
+
+
+.fc-body .fc-resource-area .fc-cell-content {
+  height: 70px;
+  margin: 10px;
+  margin-top: 20px;
+  color:white;
+  border-radius: 3px;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: .5em !important;
+  background: linear-gradient(60deg, #ffa726, #fb8c00);
+  box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+}
+
+
+
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    border-radius: 100%;
+}
+
+
+
+.hide{
+  opacity: 0;
+}
+body{
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+ul.nav.nav-pills.nav-pills-icons.nav-pills-primary {
+    background-color: rgba(255, 255, 255, .8);
+}

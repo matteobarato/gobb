@@ -1,0 +1,124 @@
+<div ng-controller="homeController" class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-md-3">
+			<div class="card card-stats">
+				<div class="card-header animated zoomIn" data-background-color="orange">
+					<i class="material-icons">room_service</i>
+				</div>
+				<div class="card-content">
+					<p class="category">In Arrivo Oggi</p>
+					<h2 class="title">4 <small><i class="material-icons">people</i></small></h2>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-3">
+			<div class="card card-stats">
+				<div class="card-header animated zoomIn" data-background-color="green">
+					<i class="material-icons">store</i>
+				</div>
+				<div class="card-content">
+					<p class="category">Camere disponibili</p>
+					<h3 class="title">4/9 <small><i class="material-icons">hotel</i></small></h3>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-3">
+			<div class="card card-stats">
+				<div class="card-header animated zoomIn" data-background-color="red">
+					<i class="material-icons">flight_takeoff</i>
+				</div>
+				<div class="card-content">
+					<p class="category">Camere in partenza</p>
+					<h3 class="title">2 <small><i class="material-icons">people</i></small></h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12">
+			<div class="card card-nav-tabs ">
+				<div class="card-header" data-background-color="purple">
+					<div class="nav-tabs-navigation">
+						<div class="nav-tabs-wrapper">
+							<ul class="nav nav-tabs" data-tabs="tabs">
+								<li class="animated zoomIn active">
+									<a href="#arrivals" target="_self" data-toggle="tab">
+										<i class="material-icons">room_service</i> Arrivi
+										<div class="ripple-container"></div>
+									</a>
+								</li>
+								<li class="animated zoomIn">
+									<a href="#departures" target="_self" data-toggle="tab">
+										<i class="material-icons">flight_takeoff</i> Partenze
+										<div class="ripple-container"></div>
+									</a>
+								</li>
+								<li class="animated zoomIn">
+									<a href="#actual" target="_self" data-toggle="tab">
+										<i class="material-icons">hotel</i> Attuali
+										<div class="ripple-container"></div>
+									</a>
+								</li>
+								<li class="pull-right">
+									<div class="form-group label-floating" style="margin:0">
+										<label class="control-label">Cerca</label>
+										<input type="text" class="form-control" style="color:white">
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="card-content">
+					<div class="tab-content">
+						<div class="tab-pane active" id="arrivals">
+							<div class="row">
+								<div ng-if="!arrivals[0]" class="col-sm-10 offset-sm-1 text-primary"><h6>NESSUN ARRIVO PREVISTO</h6></div>
+								<div ng-repeat="r in arrivals" class="square-list col-sm-4 col-md-3">
+									<h6 class="text-info">ID: {{r.id}}</h6>
+									<h5><b>{{r.info_name}}</b></h5>
+									<p><a href="mailto:{{r.info_email}}" class="text-muted">{{r.info_email}}</a></p>
+									<p><a href="tel:{{r.info_telephone}}" class="text-muted">{{r.info_telephone}}</a></p>
+									<span>{{r.duration}} notti, dal {{r.sinceF}} al {{r.untilF}}</span>
+									<br>
+									<a href="#room/{{r.room.id}}" class="btn btn-primary btn-round btn-square-list">Camera: <b>{{r.room.name}}</b></a>
+									<a href="#reservation/{{r.id}}" class="btn btn-info btn-round btn-square-list square-list-info pull-right">Vedi</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="departures">
+							<div class="row">
+								<div ng-if="!departures[0]" class="col-sm-10 offset-sm-1 text-primary"><h6>NESSUNA PARTENZA PREVISTA</h6></div>
+								<div ng-repeat="r in departures" class="square-list col-sm-4 col-md-3">
+									<h6 class="text-info">ID: {{r.id}}</h6>
+									<h5><b>{{r.info_name}}</b></h5>
+									<p><a href="mailto:{{r.info_email}}" class="text-muted">{{r.info_email}}</a></p>
+									<p><a href="tel:{{r.info_telephone}}" class="text-muted">{{r.info_telephone}}</a></p>
+									<span>{{r.duration}} notti, fino al {{r.untilF}}</span>
+									<br>
+									<a href="#room/{{r.room.id}}" class="btn btn-primary btn-round btn-square-list">Camera: <b>{{r.room.name}}</b></a>
+									<a href="#reservation/{{r.id}}" class="btn btn-info btn-round btn-square-list square-list-info pull-right">Vedi</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="actual">
+							<div class="row">
+								<div ng-if="!actual[0]" class="col-sm-10 offset-sm-1 text-primary"><h6>TUTTE LE CAMERE SONO ATTUALMENTE DISPONIBILI</h6></div>
+								<div ng-repeat="r in actual" class="square-list col-sm-4 col-md-3">
+									<h6 class="text-info">ID: {{r.id}}</h6>
+									<h5><b>{{r.info_name}}</b></h5>
+									<p><a href="mailto:{{r.info_email}}" class="text-muted">{{r.info_email}}</a></p>
+									<p><a href="tel:{{r.info_telephone}}" class="text-muted">{{r.info_telephone}}</a></p>
+									<span>{{r.duration}} notti, fino al {{r.untilF}}</span>
+									<br>
+									<a href="#room/{{r.room.id}}" class="btn btn-primary btn-round btn-square-list">Camera: <b>{{r.room.name}}</b></a>
+									<a href="#reservation/{{r.id}}" class="btn btn-info btn-round btn-square-list square-list-info pull-right">Vedi</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

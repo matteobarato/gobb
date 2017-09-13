@@ -1,0 +1,13 @@
+<!-- Banner -->
+<div ng-controller="chartController">
+	<section id="banner" class="blur-close">
+		<div style="margin-bottom:2em">
+
+	</div>
+	<canvas class="chart chart-line chart-tags-points" chart-data="data" chart-labels="labels"
+    chart-series="series" chart-options="options" chart-click="onClick"></canvas>
+
+		<hr>
+		<code>{{engine().debug()}}</code>
+		<hr>
+</div>

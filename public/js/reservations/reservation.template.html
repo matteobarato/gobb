@@ -1,0 +1,265 @@
+<div ng-controller="reservationsController" class="container-fluid">
+	<div class="row">
+		<div class="card card-nav-tabs">
+			<div class="card-header" data-background-color="green">
+				<div class="nav-tabs-navigation">
+					<div class="nav-tabs-wrapper">
+						<h2>CAMERA: <b>{{reservation.room.name}}</b></h2>
+						<ul class="nav nav-tabs" data-tabs="tabs">
+							<li class="active">
+								<a href="#status" target="_self" data-toggle="tab">
+									<i class="material-icons">info</i> Stato
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+							<li class="">
+								<a href="#clients" target="_self" data-toggle="tab">
+									<i class="material-icons">people</i> Ospiti
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+							<li class="">
+								<a href="#supplements" target="_self" data-toggle="tab">
+									<i class="material-icons">assignment</i> Supplementi
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+							<li class="">
+								<a href="#options" target="_self" data-toggle="tab">
+									<i class="material-icons">settings</i> Opzioni
+									<div class="ripple-container"></div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-content">
+				<div class="tab-content">
+					<div class="tab-pane active" id="status">
+						<div class="col-lg-4 col-md-6 col-sm-6 ng-scope">
+							<div class="card card-stats card-room">
+								<div class="card-header" data-background-color="green">
+									<i class="material-icons">store</i>
+								</div>
+
+								<div class="card-content">
+									<p><a>Prenotzaione id. {{reservation.id}}</a></p>
+									<h4 class="category">{{reservation.room.getType()}}</h4>
+								</div>
+
+								<div class="card-footer">
+									<div class="stats">
+										<h4><i class="material-icons">date_range</i> <b>{{reservation.sinceF}}</b> - <b>{{reservation.untilF}}</b></h4>
+										<h5><i class="material-icons">access_time</i> Durata <b>{{reservation.duration}}</b> gg.</h5>
+										<hr>
+										<h5><i class="material-icons">person</i> <b>{{reservation.info_name}}</b>
+								<br><a href="mailto:{{reservation.info_email}}">{{reservation.info_email}}</a>
+								<br><a href="tel:{{reservation.info_telephone}}">{{reservation.info_telephone}}</a>
+								</h5>
+										<hr>
+										<h5><i class="material-icons">people</i> Perone attese <b>{{reservation.people_expected}}</b></h5>
+										<div class="form-group label-floating">
+											<select id="status" ng-model="reservation.status" class="form-control" ng-options="t.id as t.name for t in statusOptions" required=""  ng-change="reservation.update()">
+									</select>
+											<label for="status" class="control-label">Stato</label>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 ng-scope">
+							<div class="card card-stats card-room">
+								<div class="card-header" data-background-color="orange">
+									<i class="material-icons">list</i>
+								</div>
+
+								<div class="card-content">
+									<h4 class="category">Note</h4>
+								</div>
+
+								<div class="card-footer">
+									<textarea ng-model="reservation.notes" placeholder="Aggiugi note" class="form-control" ng-change="reservation.update()" ng-model-options='{debounce: 500}'></textarea>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="clients">
+						<div class="col-sm-12 ">
+							<div class="card card-nav-tabs">
+								<div class="card-header" data-background-color="orange">
+									<a href="#client/" rel="tooltip" title="Aggiungi ospite alla prenotazione" class="btn btn-info btn-round pull-right"><i class="material-icons md-18">add_circle_outline</i> <i class="material-icons md-18">perm_contact_calendar</i></a>
+									<h4 class="title">Ospiti</h4>
+								</div>
+								<div class="card-content">
+									<form class="col-sm-12">
+										<p class="col-sm-12"><b>AGGIUNGI CLIENTE :</b></p>
+										<div class="form-group label-floating col-sm-5 col-md-3">
+											<input type="text" ng-model="search_key_clients.name" placeholder="Nome" class="form-control" ng-model-options='{ debounce: 500 }' ng-change='searchClients()'>
+										</div>
+										<div class="form-group label-floating col-sm-6 col-md-3">
+											<input type="text" ng-model="search_key_clients.surname" placeholder="Cognome" class="form-control" ng-model-options='{ debounce: 500 }' ng-change='searchClients()'>
+										</div>
+										<div class="form-group label-floating col-sm-6 col-md-3">
+											<input type="text" ng-model="search_key_clients.id_number" placeholder="N° Documento" class="form-control" ng-model-options='{ debounce: 500 }' ng-change='searchClients()'>
+										</div>
+										<div class="form-group col-sm-1 animated zoomIn" title="Cerca" rel="tootltip"><a class="btn btn-success btn-fab btn-fab-mini btn-round"><i class="material-icons">search</i></a></div>
+									</form>
+
+
+
+									<div class="col-sm-12 col-md-8">
+										<h6>- <u>registro clienti</u> :</h6>
+										<ul class="list-group">
+											<li class="list-group-item text-default">
+												<small class="col-sm-2">N° Documento</small>
+												<small>Nome&nbsp; &nbsp;Cognome</small>
+											</li>
+											<li  ng-show="res_clients[0]" ng-repeat="c in res_clients | limitTo: 5" class="list-group-item">
+												<div class="col-sm-2">{{c.id_number? c.id_number : '--'}}</div>
+												{{c.name}}&nbsp; &nbsp;{{c.surname}}
+												<a class="btn btn-round btn-primary btn-small" href="" ng-click="reservation.addClient(c)"><i class="material-icons" title="Aggiungi alla prenotazione" >add_circle</i> AGGIUNGI </a>
+											</li>
+											<li class="list-group-item">
+												<div class="col-sm-2">{{search_key_clients.id_number? search_key_clients.id_number : '--'}}</div>
+												{{search_key_clients.name}}&nbsp; &nbsp;{{search_key_clients.surname}}
+												<a class="btn btn-round btn-success btn-small" href="" ng-click="reservation.createClient(search_key_clients)"><i class="material-icons" title="Aggiungi alla prenotazione" >add_circle</i> CREA </a>
+
+											</li>
+										<ul>
+												<hr>
+									</div>
+
+									<table class="table">
+										<thead class="text-success">
+											<th>N° Documento</th>
+											<th>Nome Cognome</th>
+											<th>Email</th>
+											<th>Info</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="client in reservation.clients">
+												<td>{{client.id_number}}</td>
+												<td>{{client.name}}&nbsp; &nbsp;{{client.surname}}</td>
+												<td>{{client.email}}</td>
+												<td><a href="#client/" class="btn btn-warning btn-round"><i class="material-icons md-18">arrow_forward</i> <i class="material-icons md-18">contact_mail</i></a>
+													<button type="button" ng-click="reservation.removeClient(client)" rel="tooltip" title="Rimuovi" class="btn btn-danger btn-simple btn-xs pull-right">
+												<i class="material-icons">close</i>
+											</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="supplements">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card card-nav-tabs">
+									<div class="card-header" data-background-color="red">
+										<h4 class="title">Supplementi</h4>
+										<h6 class="category">Aggiungi supplementi come: Beavnde Cibi, Servizi, extra...</h6>
+									</div>
+
+
+									<div class="card-content">
+										<div class="form-group label-floating col-sm-6 col-md-4 pull-right">
+											<label class="control-label">Cerca supplemnto</label>
+											<input type="text" class="form-control" ng-model="searchSupplement">
+											<span class="material-input"></span>
+										</div>
+										<table class="table">
+											<thead class="text-success">
+												<th class="text-center">Data</th>
+												<th>Descrizione</th>
+												<th>Tipologia</th>
+												<th style="max-width:100px; width:100px">Pezzo</th>
+												<th></th>
+											</thead>
+											<tbody>
+												<tr ng-repeat="supplement in reservation.supplements | filter: searchSupplement">
+													<td class="text-center">
+														<h6>{{supplement.date}}</h6>
+													</td>
+													<td>
+														<div class="form-group label-floating">
+															<p>{{supplement.name}}</p>
+														</div>
+													</td>
+													<td>
+														<div class="form-group label-floating is-empty">
+															{{supplement.type}}
+														</div>
+													</td>
+													<td>
+														<div class="form-group label-floating">
+															{{supplement.price}}
+														</div>
+													</td>
+													<td class="td-actions text-right">
+														<button type="button" rel="tooltip" title="Elimina" class="btn btn-danger btn-simple btn-xs pull-right" ng-click="removeSupplement(supplement)">
+																		<i class="material-icons">close</i>
+																	</button>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center">
+														<input type="text" name='date' ng-model="new_supplement.date" placeholder="Data" class="form-control">
+													</td>
+													<td>
+														<div class="form-group label-floating">
+															<textarea class="form-control" ng-model="new_supplement.name" placeholder="Descrizione"></textarea>
+														</div>
+													</td>
+													<td>
+														<div class="form-group label-floating">
+															<input type="text" name='type' ng-model="new_supplement.type" placeholder="Bevande, Pranzo, Serivizi, ecc..." class="form-control">
+														</div>
+													</td>
+													<td>
+														<div class="form-group label-floating">
+															<label class="control-label">Prezzo</label>
+															<input type="number" ng-model="new_supplement.price" min="0" step="0.01" class="form-control">
+														</div>
+													</td>
+													<td class="td-actions text-right">
+														<button type="button" rel="tooltip" title="Aggiungi" class="btn btn-success btn-simple btn-xs pull-right" ng-click='addSupplement()'>
+												<i class="material-icons md-24">add</i>
+											</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="col-sm-6 col-md-6 pull-left ">
+											<hr>
+											<a class="text-success"><i class="material-icons">info_outline</i> per modificare: cancella e inseriscine un nuovo</a>
+										</div>
+										<div class="col-sm-6 col-md-4 pull-right ">
+											<hr>
+											<h3 class="text-right" style="margin-right:2em">TOTALE: <b>{{supplementsAmount()}} €</b></h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="options">
+						<button type="button" class="btn btn-lg btn-danger" ng-click="reservation.delete()">
+							<b>Elimina prenotazione</b> <i class="material-icons md-18">delete</i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+</div>
